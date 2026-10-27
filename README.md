@@ -2,7 +2,7 @@
 
 Dua halaman statis (HTML + CSS + JavaScript native, tanpa library) yang dihubungkan lewat navigasi,
 
-# Tampilan Aplikasi
+# SS index.html
 <img width="1917" height="1077" alt="SS TAMPILAN" src="https://github.com/user-attachments/assets/78d51910-6d18-4d71-a519-865f0ab3c793" />
 <img width="1917" height="1078" alt="SS SEARCH TAMPILAN" src="https://github.com/user-attachments/assets/15f5cbbc-c916-42ff-ae47-02c3c268a1e2" />
 
