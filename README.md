@@ -12,19 +12,21 @@ form.html
 
 # Fitur
 
-1. Katalog Produk (index.html) - Fetch API
-Mengambil data dari https://dummyjson.com/products dengan fetch().
-Menampilkan nama, harga, kategori, dan gambar produk lewat DOM.
-Status loading saat data diambil, pesan error + tombol "Coba lagi" bila gagal.
-Cek response.ok agar status 404/500 juga dianggap error.
-Pencarian produk (nama / kategori) memakai event input.
+## 1. Katalog Produk (`index.html`) - Fetch API
 
-2. Pendaftaran Member (form.html) - DOM & Event Handling
-Kolom: nama, email, password, konfirmasi password, minat, persetujuan.
-Event: input, blur, change, click, submit, reset.
-Validasi langsung saat mengetik, pesan error muncul di bawah kolom.
-Indikator kekuatan password, tombol tampilkan/sembunyikan password.
-Hasil pendaftaran tampil dinamis sebagai kartu ringkasan.
+- Mengambil data dari `https://dummyjson.com/products` dengan `fetch()`.
+- Menampilkan nama, harga, kategori, dan gambar produk lewat DOM.
+- Status **loading** saat data diambil, pesan error + tombol "Coba lagi" bila gagal.
+- Cek `response.ok` agar status 404/500 juga dianggap error.
+- Pencarian produk (nama / kategori) memakai event `input`.
+
+## 2. Pendaftaran Member (`form.html`) - DOM & Event Handling
+
+- Kolom: nama, email, password, konfirmasi password, minat, persetujuan.
+- Event: `input`, `blur`, `change`, `click`, `submit`, `reset`.
+- Validasi langsung saat mengetik, pesan error muncul di bawah kolom.
+- Indikator kekuatan password, tombol tampilkan/sembunyikan password.
+- Hasil pendaftaran tampil dinamis sebagai kartu ringkasan.
 
 ## Aturan Validasi Form
 
