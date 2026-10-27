@@ -59,6 +59,11 @@ function createCard(product) {
   const img = document.createElement("img");
   img.src = product.thumbnail;
   img.alt = product.title;
+  img.loading = "lazy";
+  img.onerror = () => {
+    img.onerror = null;
+    img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect fill='%23e2e8f0' width='300' height='200'/%3E%3Ctext fill='%2364748b' font-family='sans-serif' font-size='14' dy='5' font-weight='600' x='50%25' y='50%25' text-anchor='middle'%3EGambar tidak tersedia%3C/text%3E%3C/svg%3E";
+  };
   thumb.appendChild(img);
 
   const body = document.createElement("div");
@@ -96,10 +101,22 @@ function renderProducts(products) {
   gridEl.appendChild(fragment);
 }
 
+function handleSearch() {
+  const keyword = searchInput.value.trim().toLowerCase();
+  const filtered = allProducts.filter(
+    (p) =>
+      (p.title && p.title.toLowerCase().includes(keyword)) ||
+      (p.category && p.category.toLowerCase().includes(keyword)) ||
+      (p.brand && p.brand.toLowerCase().includes(keyword))
+  );
+  renderProducts(filtered);
+}
+
 async function fetchProducts() {
   showLoading();
   gridEl.replaceChildren();
   countEl.textContent = "";
+  searchInput.disabled = true;
 
   try {
     const response = await fetch(API_URL);
@@ -115,12 +132,15 @@ async function fetchProducts() {
     }
 
     allProducts = data.products;
+    searchInput.disabled = false;
     renderProducts(allProducts);
   } catch (error) {
     console.error("Fetch error:", error);
     showError(error.message);
   }
 }
+
+searchInput.addEventListener("input", handleSearch);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", fetchProducts);
