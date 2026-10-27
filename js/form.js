@@ -1,4 +1,7 @@
 const form = document.getElementById("registerForm");
+const strengthBar = document.getElementById("strengthBar");
+const strengthText = document.getElementById("strengthText");
+const togglePasswordBtn = document.getElementById("togglePassword");
 const passwordInput = document.getElementById("password");
 
 const rules = {
@@ -50,6 +53,19 @@ function validateField(id) {
   return message === "";
 }
 
+function updateStrength(value) {
+  let score = 0;
+  if (value.length >= 8) score++;
+  if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
+  if (/\d/.test(value)) score++;
+  if (/[^A-Za-z0-9]/.test(value)) score++;
+  if (!value) score = 0;
+
+  const labels = ["-", "Lemah", "Cukup", "Bagus", "Kuat"];
+  strengthBar.dataset.level = String(score);
+  strengthText.textContent = `Kekuatan password: ${labels[score]}`;
+}
+
 Object.keys(rules).forEach((id) => {
   const input = document.getElementById(id);
   const eventName = input.type === "checkbox" ? "change" : "input";
@@ -57,11 +73,19 @@ Object.keys(rules).forEach((id) => {
   input.addEventListener(eventName, () => {
     validateField(id);
     if (id === "password") {
+      updateStrength(passwordInput.value);
       if (document.getElementById("konfirmasi").value) validateField("konfirmasi");
     }
   });
 
   input.addEventListener("blur", () => validateField(id));
+});
+
+togglePasswordBtn.addEventListener("click", () => {
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  document.getElementById("konfirmasi").type = isHidden ? "text" : "password";
+  togglePasswordBtn.textContent = isHidden ? "Sembunyikan" : "Tampilkan";
 });
 
 form.addEventListener("submit", (event) => {

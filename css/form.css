@@ -180,3 +180,52 @@
     text-align: center;
     color: var(--muted);
 }
+
+.password-row {
+    display: flex;
+    gap: 8px;
+}
+
+.password-row input {
+    flex: 1;
+}
+
+.password-row .ghost-btn {
+    min-width: 112px;
+}
+
+.strength {
+    height: 6px;
+    margin-top: 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--danger);
+    transition: width 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.strength-bar[data-level="1"] {
+    width: 25%;
+    background: #ef4444;
+}
+
+.strength-bar[data-level="2"] {
+    width: 50%;
+    background: #f59e0b;
+}
+
+.strength-bar[data-level="3"] {
+    width: 75%;
+    background: #84cc16;
+}
+
+.strength-bar[data-level="4"] {
+    width: 100%;
+    background: #10b981;
+}
