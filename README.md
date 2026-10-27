@@ -36,6 +36,9 @@ Hasil pendaftaran tampil dinamis sebagai kartu ringkasan.
 | Konfirmasi | wajib, sama dengan password |
 | Persetujuan | wajib dicentang |
 
+## Struktur Folder
+
+```text
 tugas-fetch-form/
 ├── index.html
 ├── form.html
@@ -46,8 +49,9 @@ tugas-fetch-form/
 │   ├── products.js
 │   └── form.js
 ├── assets/
-│   ├── favicon.svg
+│   └── favicon.svg
 └── README.md
+```
 
 Cara Menjalankan
 Buka index.html di browser. Halaman produk membutuhkan koneksi internet.
