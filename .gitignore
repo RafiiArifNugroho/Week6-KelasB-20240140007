@@ -1,0 +1,17 @@
+# Dependency & Cache
+node_modules/
+.npm/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Sistem Operasi
+.DS_Store
+Thumbs.db
+Desktop.ini
