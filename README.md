@@ -18,18 +18,23 @@ Menampilkan nama, harga, kategori, dan gambar produk lewat DOM.
 Status loading saat data diambil, pesan error + tombol "Coba lagi" bila gagal.
 Cek response.ok agar status 404/500 juga dianggap error.
 Pencarian produk (nama / kategori) memakai event input.
+
 2. Pendaftaran Member (form.html) - DOM & Event Handling
 Kolom: nama, email, password, konfirmasi password, minat, persetujuan.
 Event: input, blur, change, click, submit, reset.
 Validasi langsung saat mengetik, pesan error muncul di bawah kolom.
 Indikator kekuatan password, tombol tampilkan/sembunyikan password.
 Hasil pendaftaran tampil dinamis sebagai kartu ringkasan.
-Kolom	Aturan
-Nama	wajib, minimal 3 karakter, hanya huruf dan spasi
-Email	wajib, format email valid
-Password	wajib, minimal 8 karakter, mengandung huruf dan angka
-Konfirmasi	wajib, sama dengan password
-Persetujuan	wajib dicentang
+
+## Aturan Validasi Form
+
+| Kolom | Aturan |
+|---|---|
+| Nama | wajib, minimal 3 karakter, hanya huruf dan spasi |
+| Email | wajib, format email valid |
+| Password | wajib, minimal 8 karakter, mengandung huruf dan angka |
+| Konfirmasi | wajib, sama dengan password |
+| Persetujuan | wajib dicentang |
 Struktur Folder
 tugas-fetch-form/
 ├── index.html
