@@ -31,6 +31,16 @@
     <p class="lead">Temukan beragam produk berkualitas dengan harga terbaik, langsung dari katalog kami.</p>
   </header>
 
+  <section class="toolbar">
+    <label for="searchInput" class="sr-only">Cari produk</label>
+    <input type="search" id="searchInput" placeholder="Cari produk atau kategori..." disabled>
+    <span id="resultCount" class="count" aria-live="polite"></span>
+  </section>
+
+  <main>
+    <div id="productGrid" class="grid"></div>
+  </main>
+
   <footer class="footer">
     &copy; 2026 AliMart &middot; Belanja mudah, aman, dan nyaman
   </footer>
