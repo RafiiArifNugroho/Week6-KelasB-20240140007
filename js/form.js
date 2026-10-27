@@ -1,4 +1,7 @@
 const form = document.getElementById("registerForm");
+const formMessage = document.getElementById("formMessage");
+const resultCard = document.getElementById("resultCard");
+const placeholderText = document.getElementById("placeholderText");
 const strengthBar = document.getElementById("strengthBar");
 const strengthText = document.getElementById("strengthText");
 const togglePasswordBtn = document.getElementById("togglePassword");
@@ -66,6 +69,54 @@ function updateStrength(value) {
   strengthText.textContent = `Kekuatan password: ${labels[score]}`;
 }
 
+function showMessage(text, type) {
+  formMessage.hidden = false;
+  formMessage.textContent = text;
+  formMessage.className = `form-message ${type}`;
+}
+
+function createRow(label, value) {
+  const row = document.createElement("div");
+  row.className = "row";
+  const dt = document.createElement("dt");
+  dt.textContent = label;
+  const dd = document.createElement("dd");
+  dd.textContent = value;
+  row.append(dt, dd);
+  return row;
+}
+
+function showResult(data) {
+  resultCard.replaceChildren();
+
+  const title = document.createElement("h2");
+  title.textContent = `Selamat datang, ${data.nama.split(/\s+/)[0]}!`;
+
+  const subtitle = document.createElement("p");
+  subtitle.className = "subtitle";
+  const time = new Date().toLocaleString("id-ID", { dateStyle: "long", timeStyle: "short" });
+  subtitle.textContent = `Bergabung pada ${time}`;
+
+  const list = document.createElement("dl");
+  list.append(
+    createRow("Nama", data.nama),
+    createRow("Email", data.email),
+    createRow("Kategori favorit", data.minat),
+    createRow("Password", "•".repeat(8) + " (disembunyikan)")
+  );
+
+  resultCard.append(title, subtitle, list);
+  resultCard.hidden = false;
+  placeholderText.hidden = true;
+}
+
+function clearResult() {
+  formMessage.hidden = true;
+  resultCard.hidden = true;
+  resultCard.replaceChildren();
+  placeholderText.hidden = false;
+}
+
 Object.keys(rules).forEach((id) => {
   const input = document.getElementById(id);
   const eventName = input.type === "checkbox" ? "change" : "input";
@@ -94,7 +145,31 @@ form.addEventListener("submit", (event) => {
   const invalidIds = Object.keys(rules).filter((id) => !validateField(id));
 
   if (invalidIds.length > 0) {
+    resultCard.hidden = true;
+    placeholderText.hidden = true;
+    showMessage(`Ada ${invalidIds.length} kolom yang perlu diperbaiki sebelum melanjutkan.`, "fail");
     document.getElementById(invalidIds[0]).focus();
     return;
   }
+
+  const data = {
+    nama: document.getElementById("nama").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    minat: document.getElementById("minat").selectedOptions[0].textContent,
+  };
+
+  showMessage("Pendaftaran berhasil! Selamat bergabung.", "success");
+  showResult(data);
+});
+
+form.addEventListener("reset", () => {
+  clearResult();
+  Object.keys(rules).forEach((id) => {
+    document.getElementById(`${id}-error`).textContent = "";
+    document.getElementById(id).removeAttribute("aria-invalid");
+  });
+  updateStrength("");
+  passwordInput.type = "password";
+  document.getElementById("konfirmasi").type = "password";
+  togglePasswordBtn.textContent = "Tampilkan";
 });

@@ -1,4 +1,3 @@
-/* --- Form Layout & Fields --- */
 .form-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -96,6 +95,55 @@
     color: var(--muted);
 }
 
+.password-row {
+    display: flex;
+    gap: 8px;
+}
+
+.password-row input {
+    flex: 1;
+}
+
+.password-row .ghost-btn {
+    min-width: 112px;
+}
+
+.strength {
+    height: 6px;
+    margin-top: 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--danger);
+    transition: width 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.strength-bar[data-level="1"] {
+    width: 25%;
+    background: #ef4444;
+}
+
+.strength-bar[data-level="2"] {
+    width: 50%;
+    background: #f59e0b;
+}
+
+.strength-bar[data-level="3"] {
+    width: 75%;
+    background: #84cc16;
+}
+
+.strength-bar[data-level="4"] {
+    width: 100%;
+    background: #10b981;
+}
+
 .field .check {
     display: flex;
     align-items: center;
@@ -171,6 +219,14 @@
     outline-offset: 2px;
 }
 
+.result-panel {
+    position: sticky;
+    top: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 .placeholder {
     margin: 0;
     padding: 40px 24px;
@@ -181,51 +237,95 @@
     color: var(--muted);
 }
 
-.password-row {
+.form-message {
+    padding: 13px 18px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-message[hidden] {
+    display: none;
+}
+
+.form-message.success {
+    background: var(--ok-bg);
+    border-color: var(--ok-line);
+    color: var(--ok);
+}
+
+.form-message.fail {
+    background: var(--danger-bg);
+    border-color: var(--danger-line);
+    color: var(--danger);
+}
+
+.result-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    animation: rise 0.4s var(--ease) both;
+}
+
+.result-card[hidden] {
+    display: none;
+}
+
+.result-card h2 {
+    margin: 0 0 4px;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+}
+
+.result-card .subtitle {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.result-card dl {
+    margin: 0;
+}
+
+.result-card .row {
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
 }
 
-.password-row input {
-    flex: 1;
+.result-card dt {
+    color: var(--muted);
 }
 
-.password-row .ghost-btn {
-    min-width: 112px;
+.result-card dd {
+    margin: 0;
+    font-weight: 600;
+    text-align: right;
+    word-break: break-word;
 }
 
-.strength {
-    height: 6px;
-    margin-top: 10px;
-    border-radius: 999px;
-    background: var(--surface-2);
-    overflow: hidden;
-}
+@media (max-width: 800px) {
+    .form-layout {
+        grid-template-columns: 1fr;
+    }
 
-.strength-bar {
-    height: 100%;
-    width: 0;
-    border-radius: 999px;
-    background: var(--danger);
-    transition: width 0.3s var(--ease), background 0.3s var(--ease);
-}
+    .result-panel {
+        position: static;
+    }
 
-.strength-bar[data-level="1"] {
-    width: 25%;
-    background: #ef4444;
-}
+    #registerForm {
+        padding: 22px 18px;
+    }
 
-.strength-bar[data-level="2"] {
-    width: 50%;
-    background: #f59e0b;
-}
-
-.strength-bar[data-level="3"] {
-    width: 75%;
-    background: #84cc16;
-}
-
-.strength-bar[data-level="4"] {
-    width: 100%;
-    background: #10b981;
+    .password-row .ghost-btn {
+        min-width: 104px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 }
