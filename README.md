@@ -35,6 +35,7 @@ Hasil pendaftaran tampil dinamis sebagai kartu ringkasan.
 | Password | wajib, minimal 8 karakter, mengandung huruf dan angka |
 | Konfirmasi | wajib, sama dengan password |
 | Persetujuan | wajib dicentang |
+
 Struktur Folder
 tugas-fetch-form/
 ├── index.html
