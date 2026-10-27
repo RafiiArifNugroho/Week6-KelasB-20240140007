@@ -1,84 +1,51 @@
-# AliMart - Platform E-Commerce & Keanggotaan Modern
+# AliMart - Katalog Produk & Pendaftaran Member (Tugas Fetch API & Form DOM / Event Handling)
 
-Proyek web dinamis dan responsif untuk pemenuhan tugas **Praktikum Pengembangan Aplikasi Web (PAW) Pertemuan 6 (Week 6 - Kelas B)**.
+Dua halaman statis (HTML + CSS + JavaScript native, tanpa library) yang dihubungkan lewat navigasi,
 
-## Identitas Pengembang
-- **Nama**: Rafii Arif Nugroho
-- **NIM**: 20240140007
-- **Kelas**: B
+# Tampilan Aplikasi
+<img width="1917" height="1077" alt="SS TAMPILAN" src="https://github.com/user-attachments/assets/78d51910-6d18-4d71-a519-865f0ab3c793" />
+<img width="1917" height="1078" alt="SS SEARCH TAMPILAN" src="https://github.com/user-attachments/assets/15f5cbbc-c916-42ff-ae47-02c3c268a1e2" />
 
----
+form.html
+<img width="1916" height="1077" alt="SS FORM HTML" src="https://github.com/user-attachments/assets/f41b17ce-77c5-452c-b8e6-0d196b3e0759" />
+<img width="1915" height="1072" alt="Cuplikan layar 2026-10-27 093805" src="https://github.com/user-attachments/assets/5340bb26-7acd-4926-976f-cf01979b2989" />
 
-## 🚀 Fitur Utama
+# Fitur
 
-### 1. Halaman Katalog Belanja (`index.html`)
-- **Integrasi REST API Asinkron**: Mengambil dan merender data produk secara real-time dari [DummyJSON Products API](https://dummyjson.com/products).
-- **Status Loading & Error Handling**: Indikator *loading spinner* animasi CSS dan penanganan kegagalan jaringan yang dilengkapi tombol *Coba Lagi* (*retry mechanism*).
-- **Pencarian Real-Time**: Input pencarian responsif yang memfilter produk secara instan berdasarkan judul, kategori, maupun merek dengan penghitung jumlah produk yang ditemukan.
-- **Fallback Gambar Produk**: Penggantian otomatis dengan placeholder gambar SVG inline apabila URL thumbnail produk mengalami kendala muat (*broken image*).
-
-### 2. Halaman Pendaftaran Member (`form.html`)
-- **Validasi Interaktif & Real-Time**:
-  - **Nama Lengkap**: Wajib diisi, minimal 3 karakter, hanya menerima huruf dan spasi.
-  - **Email**: Format email valid sesuai standar regex RFC.
-  - **Password**: Wajib minimal 8 karakter dengan kombinasi huruf dan angka.
-  - **Konfirmasi Password**: Verifikasi kecocokan nilai dengan kolom password secara instan.
-  - **Kategori Favorit**: Dropdown pemilihan preferensi belanja member.
-  - **Persetujuan Ketentuan**: Verifikasi wajib centang syarat & ketentuan.
-- **Meteran Kekuatan Password (Strength Meter)**: Menghitung skor kekuatan password secara dinamis ke dalam 4 level (*Lemah, Cukup, Bagus, Kuat*) dengan indikator bilah warna visual.
-- **Toggle Visibilitas Password**: Tombol untuk menampilkan atau menyembunyikan teks password dan konfirmasi secara sinkron.
-- **Panel Ringkasan Keanggotaan**: Kartu ringkasan member dinamis dengan stempel waktu bergabung (*timestamp*) lokal Indonesia setelah pendaftaran berhasil.
-- **Fitur Reset Formulir**: Mengembalikan seluruh state input, pesan kesalahan, dan kartu hasil ke kondisi awal.
-
-### 3. Sistem Tema Dinamis (Light & Dark Mode)
-- **Persistensi State**: Menyimpan preferensi tema pengguna di `localStorage`.
-- **Bebas Kedipan (*No FOUC*)**: Deteksi awal tema langsung pada blok `<head>` sebelum rendering DOM.
-- **Transisi Halus**: Efek transisi warna latar belakang dan teks yang nyaman di mata dengan animasi ikon matahari & bulan.
-
-### 4. Aksesibilitas & Desain Responsif (A11y & UI/UX)
-- Menggunakan elemen HTML5 semantik (`<nav>`, `<header>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`).
-- Atribut ARIA komprehensif (`aria-live`, `aria-describedby`, `aria-invalid`, `role="status"`).
-- Tata letak responsif penuh (*Mobile First*) yang optimal di ponsel, tablet, maupun desktop.
-
----
-
-## 📁 Struktur Direktori
-
-```
-PAW PERTEMUAN 6/
-├── assets/
-│   └── favicon.svg       # Ikon vektor favicon AliMart
+1. Katalog Produk (index.html) - Fetch API
+Mengambil data dari https://dummyjson.com/products dengan fetch().
+Menampilkan nama, harga, kategori, dan gambar produk lewat DOM.
+Status loading saat data diambil, pesan error + tombol "Coba lagi" bila gagal.
+Cek response.ok agar status 404/500 juga dianggap error.
+Pencarian produk (nama / kategori) memakai event input.
+2. Pendaftaran Member (form.html) - DOM & Event Handling
+Kolom: nama, email, password, konfirmasi password, minat, persetujuan.
+Event: input, blur, change, click, submit, reset.
+Validasi langsung saat mengetik, pesan error muncul di bawah kolom.
+Indikator kekuatan password, tombol tampilkan/sembunyikan password.
+Hasil pendaftaran tampil dinamis sebagai kartu ringkasan.
+Kolom	Aturan
+Nama	wajib, minimal 3 karakter, hanya huruf dan spasi
+Email	wajib, format email valid
+Password	wajib, minimal 8 karakter, mengandung huruf dan angka
+Konfirmasi	wajib, sama dengan password
+Persetujuan	wajib dicentang
+Struktur Folder
+tugas-fetch-form/
+├── index.html
+├── form.html
 ├── css/
-│   ├── form.css          # Gaya khusus halaman formulir & ringkasan member
-│   └── style.css         # Desain global, variabel tema, navigasi, & katalog
+│   ├── style.css
+│   └── form.css
 ├── js/
-│   ├── form.js           # Logika validasi formulir & indikator password
-│   ├── product.js        # Logika fetch API katalog & pencarian real-time
-│   ├── products.js       # File helper modul produk
-│   └── theme.js          # Logika toggle tema gelap/terang & localStorage
-├── form.html             # Halaman pendaftaran member baru
-├── index.html            # Halaman utama katalog produk belanja
-├── .gitignore            # Berkas pengabaian Git
-└── README.md             # Dokumentasi lengkap proyek
-```
+│   ├── products.js
+│   └── form.js
+├── assets/
+│   ├── favicon.svg
+└── README.md
+Cara Menjalankan
+Buka index.html di browser. Halaman produk membutuhkan koneksi internet.
 
----
 
-## 🛠️ Teknologi yang Digunakan
-- **HTML5**: Struktur halaman semantik dan aksesibel.
-- **CSS3 Vanilla**: Desain modern berbasis *CSS Custom Properties*, *CSS Grid*, *Flexbox*, serta *Backdrop Filter*.
-- **JavaScript ES6+**: DOM Manipulation, Event Handling, *Fetch API*, *Async/Await*, serta Regex Validation.
-- **DummyJSON REST API**: Sumber data katalog produk e-commerce.
 
----
 
-## 💻 Cara Menjalankan Proyek
-1. Clone repositori ini:
-   ```bash
-   git clone https://github.com/RafiiArifNugroho/Week6-KelasB-20240140007.git
-   ```
-2. Buka direktori proyek:
-   ```bash
-   cd Week6-KelasB-20240140007
-   ```
-3. Buka berkas `index.html` atau `form.html` langsung di peramban web (*browser*), atau gunakan ekstensi seperti **Live Server** di VS Code.
